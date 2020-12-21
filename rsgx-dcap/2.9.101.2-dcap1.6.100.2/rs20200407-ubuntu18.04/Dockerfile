@@ -22,6 +22,6 @@ RUN apt install -y apt-transport-https ca-certificates gnupg software-properties
   tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null                                     &&\
   apt-add-repository "deb https://apt.kitware.com/ubuntu/ $(lsb_release -cs) main"      &&\
   apt update                                                                            &&\
-  apt install -y cmake expect vim                                                       &&\
+  apt install -y cmake=3.19.1-0kitware1 expect vim                                     &&\
   apt clean                                                                             &&\
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
