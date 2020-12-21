@@ -3,14 +3,14 @@ FROM ubuntu:18.04 as builder
 #RUN echo > /etc/apt/sources.list &&\
 #  echo "deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse" >> /etc/apt/sources.list              &&\
 #  echo "deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse" >> /etc/apt/sources.list  &&\
-#  echo "deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse" >> /etc/apt/sources.list   &&\
-#  apt update
+#  echo "deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse" >> /etc/apt/sources.list
 
 ENV VERSION v0.9.8
 WORKDIR /libfaketime
 
-RUN apt install -y --no-install-recommends build-essential git ca-certificates  &&\
-  git clone --depth 1 -b ${VERSION} https://github.com/wolfcw/libfaketime .     &&\
+RUN apt update                                                                &&\
+  apt install -y --no-install-recommends build-essential git ca-certificates  &&\
+  git clone --depth 1 -b ${VERSION} https://github.com/wolfcw/libfaketime .   &&\
   make
 
 # Library is in

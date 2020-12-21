@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 workingDir=${PWD}
 
 # filter out files in folder like 'libfaketime/0.9.8/alpine3.12/'
