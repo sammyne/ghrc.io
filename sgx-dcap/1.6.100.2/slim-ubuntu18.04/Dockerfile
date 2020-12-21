@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-# the matching driver version is v1.36
+# the matching driver version is v1.33
 ENV DCAP_VERSION=1.6.100.2            \
   DEBIAN_FRONTEND=noninteractive      \
   SDK_VERSION=2.9.101.2
