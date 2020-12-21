@@ -14,12 +14,12 @@ RUN apt update                                                                &&
   make
 
 # Library is in
-# - /libfaketime/libfaketimeMT.so.1
-# - /libfaketime/libfaketime.so.1
+# - /libfaketime/src/libfaketimeMT.so.1
+# - /libfaketime/src/libfaketime.so.1
 
 FROM ubuntu:18.04
 
-COPY --from=builder /libfaketime/libfaketime.so.1 /lib/faketime.so
+COPY --from=builder /libfaketime/src/libfaketime.so.1 /lib/faketime.so
 
 ENV LD_PRELOAD=/lib/faketime.so \
   FAKETIME="-15d"               \
@@ -30,4 +30,4 @@ RUN date
 # Build the final image
 FROM scratch
 
-COPY --from=builder /libfaketime/libfaketimeMT.so.1 /libfaketime.so
+COPY --from=builder /libfaketime/src/libfaketimeMT.so.1 /libfaketime.so

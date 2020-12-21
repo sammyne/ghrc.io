@@ -18,7 +18,7 @@ RUN apk add build-base git                                                  &&\
 # Verify in Alpline
 FROM alpine:3.12
 
-COPY --from=builder /libfaketime/libfaketimeMT.so.1 /lib/libfaketime.so
+COPY --from=builder /libfaketime/src/libfaketimeMT.so.1 /lib/libfaketime.so
 
 ENV LD_PRELOAD=/lib/faketime.so \
   FAKETIME="-15d"               \
@@ -29,4 +29,4 @@ RUN date
 # Build the final image
 FROM scratch
 
-COPY --from=builder /libfaketime/libfaketimeMT.so.1 /libfaketime.so
+COPY --from=builder /libfaketime/src/libfaketimeMT.so.1 /libfaketime.so
