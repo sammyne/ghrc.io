@@ -24,9 +24,5 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_TOKEN }}
-      #      - name: Git
-      #        run: |
-      #          git --version &&\
-      #          git log
       - name: Build and push the docker images
         run: bash build_then_push.sh
