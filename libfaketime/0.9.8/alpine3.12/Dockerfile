@@ -9,21 +9,24 @@ WORKDIR /libfaketime
 
 RUN apk add build-base git                                                  &&\
   git clone --depth 1 -b ${VERSION} https://github.com/wolfcw/libfaketime . &&\
-  make && make install
+  make
 
 # Library is in
-# - /usr/local/lib/faketime/libfaketimeMT.so.1
-# - /usr/local/lib/faketime/libfaketime.so.1
+# - /libfaketime/src/libfaketimeMT.so.1
+# - /libfaketime/src/libfaketime.so.1
 
 # Verify in Alpline
 FROM alpine:3.12
-COPY --from=builder /usr/local/lib/faketime/libfaketimeMT.so.1 /lib/libfaketime.so
+
+COPY --from=builder /libfaketime/libfaketimeMT.so.1 /lib/libfaketime.so
+
 ENV LD_PRELOAD=/lib/faketime.so \
   FAKETIME="-15d"               \
   DONT_FAKE_MONOTONIC=1
+
 RUN date
 
 # Build the final image
 FROM scratch
 
-COPY --from=builder /usr/local/lib/faketime/libfaketimeMT.so.1 /libfaketime.so
+COPY --from=builder /libfaketime/libfaketimeMT.so.1 /libfaketime.so
