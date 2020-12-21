@@ -10,7 +10,7 @@ ENV VERSION v0.9.8
 WORKDIR /libfaketime
 
 RUN apt install -y --no-install-recommends build-essential git ca-certificates  &&\
-  git clone --depth 1 -b ${VERSION}} https://github.com/wolfcw/libfaketime .     &&\
+  git clone --depth 1 -b ${VERSION} https://github.com/wolfcw/libfaketime .     &&\
   make
 
 # Library is in

@@ -21,13 +21,14 @@ packages=$(git diff HEAD~ HEAD --name-only | \
 namespace="ghcr.io/sammyne"
 
 for v in ${packages[@]}; do
-  if [ ! -f "$v/Dockerfile" ]; then
+  pkgDir=${workingDir}/$v
+  cd ${pkgDir}
+
+  if [ ! -f "${pkgDir}/Dockerfile" ]; then
     echo ""
     echo "[-] skipping $v due to no Dockerfile"
     continue
   fi
-
-  cd ${workingDir}/$v
 
   vv="${v/\//:}" # replace 1st '/' as ':'
   repoTag="${namespace}/${vv//\//-}" # replace all '/' as '-'
