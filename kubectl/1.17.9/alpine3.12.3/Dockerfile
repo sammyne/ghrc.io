@@ -13,7 +13,7 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/${VERSION
 RUN chmod +x kubectl &&\
   cp kubectl /bin/ 
 
-RUN kubectl version
+RUN kubectl version --client
 
 FROM alpine:3.12.3
 
