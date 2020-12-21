@@ -4,6 +4,11 @@ set -e
 
 workingDir=${PWD}
 
+if [ -z "$1" ]; then
+  echo "missing namespace of form 'hub/user'"
+fi
+namespace=$1
+
 # filter out files in folder like 'libfaketime/0.9.8/alpine3.12/'
 # @dev '/' needs no escaping
 #git diff HEAD~ HEAD --name-status | grep -E '^[^/]+/[^/]+/[^/]+/[^/]+'
@@ -19,8 +24,6 @@ packages=$(git diff HEAD~ HEAD --name-only | \
 
 # GITHUB_ACTOR is env var defined by Github Actions
 #user=${GITHUB_ACTOR}
-
-namespace="ghcr.io/sammyne"
 
 for v in ${packages[@]}; do
   pkgDir=${workingDir}/$v
