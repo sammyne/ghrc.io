@@ -22,7 +22,6 @@ RUN apt install -y apt-transport-https ca-certificates gnupg software-properties
   tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null                                     &&\
   apt-add-repository "deb https://apt.kitware.com/ubuntu/ $(lsb_release -cs) main"      &&\
   apt update                                                                            &&\
-  apt install -y autoconf cmake=3.19.1-0kitware1 expect git libssl-dev libtool            \
-  pkg-config vim                                                                        &&\
+  apt install -y autoconf cmake expect git libssl-dev libtool pkg-config vim            &&\
   apt clean                                                                             &&\
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
