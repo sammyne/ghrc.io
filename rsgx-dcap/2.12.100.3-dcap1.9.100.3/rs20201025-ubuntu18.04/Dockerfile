@@ -16,6 +16,10 @@ RUN RUST_VERSION=nightly-2020-10-25                                   &&\
 #
 # cmake apt repository is released by kitware since 2019-04-05 as 
 #   https://blog.kitware.com/ubuntu-cmake-repository-now-available/ and https://apt.kitware.com/
+#
+# @dev sgx_unwind depends on autoconf 
+# @dev autoconf depends on libtool 
+# @dev openssl-sys crate depends on libssl-dev and pkf-config
 RUN apt install -y apt-transport-https ca-certificates gnupg software-properties-common &&\
   wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | \
   gpg --dearmor - | \
