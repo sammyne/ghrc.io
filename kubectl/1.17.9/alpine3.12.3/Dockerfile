@@ -1,6 +1,6 @@
 FROM alpine:3.12.3 as builder
 
-#RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
+#RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 
 ENV VERSION v1.17.9
 
