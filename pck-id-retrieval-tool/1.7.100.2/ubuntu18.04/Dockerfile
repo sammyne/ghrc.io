@@ -1,4 +1,4 @@
-FROM sammyne/sgx-dcap:2.9.101.2-dcap1.6.100.2-slim-ubuntu18.04
+FROM sammyne/sgx-dcap:2.9.101.2-dcap1.6.100.2-ubuntu18.04
 
 # no deb for v1.6
 # @dev why commenting out 'PCCS_URL', see
