@@ -1,11 +1,12 @@
 #!/bin/bash
 
-#set -e
+set -e
 
 workingDir=${PWD}
 
 if [ -z "$1" ]; then
   echo "missing namespace of form 'hub/user'"
+  exit -1
 fi
 namespace=$1
 
