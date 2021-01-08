@@ -1,4 +1,4 @@
-FROM sammyne/sgx-linux:2.12.100.3-slim-ubuntu20.04
+FROM sammyne/sgx-linux:2.12.100.3-ubuntu20.04
 
 RUN UBUNTU_CODENAME1="$(cat /etc/os-release | grep UBUNTU_CODENAME | awk -F"=" '{print $2}')1" &&\
   apt update                                                                  &&\
