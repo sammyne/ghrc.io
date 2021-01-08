@@ -1,4 +1,4 @@
-FROM sammyne/sgx-dcap:2.12.100.3-dcap1.9.100.3-dev-ubuntu18.04
+FROM sammyne/sgx-dcap:2.12.100.3-dcap1.9.100.3-sim-ubuntu18.04
 
 RUN RUST_VERSION=nightly-2020-10-25                                   &&\
   apt update                                                          &&\
