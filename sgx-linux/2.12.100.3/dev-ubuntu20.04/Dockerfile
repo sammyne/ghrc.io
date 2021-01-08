@@ -15,6 +15,7 @@ RUN apt update                                                                  
   tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null                                     &&\
   apt-add-repository "deb https://apt.kitware.com/ubuntu/ $(lsb_release -cs) main"      &&\
   apt update                                                                            &&\
-  apt install -y autoconf cmake expect git libssl-dev libtool pkg-config vim            &&\
+  apt install -y autoconf cmake expect git libcurl4-openssl-dev libssl-dev libtool        \
+  pkg-config vim                                                                        &&\
   apt clean                                                                             &&\
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
