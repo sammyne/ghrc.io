@@ -22,6 +22,7 @@ RUN UBUNTU_CODENAME=$(cat /etc/os-release | grep UBUNTU_CODENAME | awk -F"=" '{p
   apt update                                                          &&\
   apt install  -y                                                       \         
   libsgx-urts=${SDK_VERSION}-${UBUNTU_CODENAME}1                        \
+  libsgx-uae-service=${SDK_VERSION}-${UBUNTU_CODENAME}1                 \
   libsgx-qe3-logic=${DCAP_VERSION}-${UBUNTU_CODENAME}1                  \
   libsgx-pce-logic=${DCAP_VERSION}-${UBUNTU_CODENAME}1                  \
   libsgx-dcap-ql=${DCAP_VERSION}-${UBUNTU_CODENAME}1                    \

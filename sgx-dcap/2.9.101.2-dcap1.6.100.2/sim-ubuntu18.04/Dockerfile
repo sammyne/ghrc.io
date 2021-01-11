@@ -18,7 +18,6 @@ RUN UBUNTU_CODENAME1="$(cat /etc/os-release | grep UBUNTU_CODENAME | awk -F"=" '
   libsgx-launch-dev=${SDK_VERSION}-${UBUNTU_CODENAME1}              \
   libsgx-quote-ex=${SDK_VERSION}-${UBUNTU_CODENAME1}                \
   libsgx-quote-ex-dev=${SDK_VERSION}-${UBUNTU_CODENAME1}            \
-  libsgx-uae-service=${SDK_VERSION}-${UBUNTU_CODENAME1}             \
   libsgx-dcap-ql-dev=${DCAP_VERSION}-${UBUNTU_CODENAME1}            \
   libsgx-dcap-default-qpl-dev=${DCAP_VERSION}-${UBUNTU_CODENAME1} &&\
   echo "source /opt/intel/sgxsdk/environment" >> /root/.bashrc    &&\
