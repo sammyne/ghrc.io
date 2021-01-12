@@ -3,7 +3,7 @@ FROM sammyne/sgx-dcap:2.12.100.3-dcap1.9.100.3-sim-ubuntu18.04
 RUN RUST_VERSION=nightly-2020-10-25                                   &&\
   apt update                                                          &&\
   apt install -y --reinstall systemd                                  &&\
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | \
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs |           \
   sh -s -- -y --default-toolchain ${RUST_VERSION}                     &&\
   . $HOME/.cargo/env                                                  &&\
   rustup component add rust-src rls rust-analysis                     &&\
@@ -19,7 +19,7 @@ RUN RUST_VERSION=nightly-2020-10-25                                   &&\
 #
 # @dev sgx_unwind depends on autoconf 
 # @dev autoconf depends on libtool 
-# @dev openssl-sys crate depends on libssl-dev and pkf-config
+# @dev openssl-sys crate depends on libssl-dev and pkg-config
 RUN apt install -y apt-transport-https ca-certificates gnupg software-properties-common &&\
   wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | \
   gpg --dearmor - | \

@@ -19,7 +19,7 @@ RUN RUST_VERSION=nightly-2020-04-07                                   &&\
 #
 # @dev sgx_unwind depends on autoconf 
 # @dev autoconf depends on libtool 
-# @dev openssl-sys crate depends on libssl-dev and pkf-config
+# @dev openssl-sys crate depends on libssl-dev and pkg-config
 RUN apt install -y apt-transport-https ca-certificates gnupg software-properties-common &&\
   wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | \
   gpg --dearmor - | \
