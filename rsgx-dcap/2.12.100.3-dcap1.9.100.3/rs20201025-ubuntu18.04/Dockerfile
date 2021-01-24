@@ -21,7 +21,7 @@ RUN RUST_VERSION=nightly-2020-10-25                                   &&\
 # @dev autoconf depends on libtool 
 # @dev openssl-sys crate depends on libssl-dev and pkg-config
 RUN apt install -y apt-transport-https ca-certificates gnupg software-properties-common &&\
-  wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | \
+  wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null |         \
   gpg --dearmor - | \
   tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null                                     &&\
   apt-add-repository "deb https://apt.kitware.com/ubuntu/ $(lsb_release -cs) main"      &&\

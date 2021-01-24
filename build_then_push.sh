@@ -10,6 +10,36 @@ if [ -z "$1" ]; then
 fi
 namespace=$1
 
+
+## -- functions     --
+buildThenPush() {
+  pkg=$1
+  if [ -z "$pkg" ]; then
+    echo "missing package"
+    exit -1
+  fi
+
+  pkgDir=$workingDir/$pkg
+  cd $pkgDir
+
+  if [ ! -f "$pkgDir/Dockerfile" ]; then
+    echo ""
+    echo "[-] skipping $pkg due to no Dockerfile"
+    continue
+  fi
+
+  vv="${pkg/\//:}" # replace 1st '/' as ':'
+  repoTag="${namespace}/${vv//\//-}" # replace all '/' as '-'
+  echo ""
+  echo "[+] building $pkg as $repoTag"
+  docker build -t $repoTag .
+  echo "[+] building $pkg as $repoTag done"
+  echo "[+] pushing $pkg as $repoTag"
+  docker push $repoTag
+  echo "[+] pushing $pkg as $repoTag done"
+}
+## -- functions END --
+
 # filter out files in folder like 'libfaketime/0.9.8/alpine3.12/'
 # @dev '/' needs no escaping
 #git diff HEAD~ HEAD --name-status | grep -E '^[^/]+/[^/]+/[^/]+/[^/]+'
@@ -27,24 +57,7 @@ packages=$(git diff HEAD~ HEAD --name-only | \
 #user=${GITHUB_ACTOR}
 
 for v in ${packages[@]}; do
-  pkgDir=${workingDir}/$v
-  cd ${pkgDir}
-
-  if [ ! -f "${pkgDir}/Dockerfile" ]; then
-    echo ""
-    echo "[-] skipping $v due to no Dockerfile"
-    continue
-  fi
-
-  vv="${v/\//:}" # replace 1st '/' as ':'
-  repoTag="${namespace}/${vv//\//-}" # replace all '/' as '-'
-  echo ""
-  echo "[+] building $v as $repoTag"
-  docker build -t ${repoTag} .
-  echo "[+] done building $v as $repoTag"
-  echo "[+] pushing $v as $repoTag"
-  docker push ${repoTag}
-  echo "[+] done pushing $v as $repoTag"
+  buildThenPush $v
 done
 
 echo ""
