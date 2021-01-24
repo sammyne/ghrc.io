@@ -10,7 +10,6 @@ if [ -z "$1" ]; then
 fi
 namespace=$1
 
-
 ## -- functions     --
 buildThenPush() {
   pkg=$1
@@ -37,6 +36,26 @@ buildThenPush() {
   echo "[+] pushing $pkg as $repoTag"
   docker push $repoTag
   echo "[+] pushing $pkg as $repoTag done"
+
+  # DFS to rebuild dependents
+  dependents=$(findDependents "$repoTag")
+  if [ -z "$dependents" ]; then
+    return 0
+  fi
+
+  for v in ${dependents}; do
+    buildThenPush $v
+  done
+}
+
+findDependents() {
+  if [ -z "$1" ]; then
+    echo "missing package path"
+    exit -1
+  fi
+
+  cd $workingDir
+  grep -r "FROM $1" * | grep "Dockerfile" | awk -F":" '{print $1}'
 }
 ## -- functions END --
 
