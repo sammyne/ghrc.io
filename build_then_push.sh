@@ -10,6 +10,7 @@ if [ -z "$1" ]; then
 fi
 namespace=$1
 
+builtPkgs=""
 ## -- functions     --
 buildThenPush() {
   pkg=$1
@@ -17,6 +18,12 @@ buildThenPush() {
     echo "missing package"
     exit -1
   fi
+
+  if [[ $builtPkgs =~ $pkg ]]; then
+    echo "[-] skipping $pkg to avoid duplicate builds"
+    return 0
+  fi
+  builtPkgs="$builtPkg|$pkg"
 
   pkgDir=$workingDir/$pkg
   cd $pkgDir
