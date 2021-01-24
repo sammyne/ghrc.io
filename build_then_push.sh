@@ -43,8 +43,8 @@ buildThenPush() {
     return 0
   fi
 
-  for v in ${dependents}; do
-    buildThenPush $v
+  for v in ${dependents[@]}; do
+    buildThenPush ${v%%/Dockerfile}
   done
 }
 
