@@ -19,11 +19,11 @@ buildThenPush() {
     exit -1
   fi
 
-  if [[ $builtPkgs =~ $pkg ]]; then
+  if [[ $builtPkgs =~ "|$pkg|" ]]; then
     echo "[-] skipping $pkg to avoid duplicate builds"
     return 0
   fi
-  builtPkgs="$builtPkg|$pkg"
+  builtPkgs="$builtPkg|$pkg|"
 
   pkgDir=$workingDir/$pkg
   cd $pkgDir
