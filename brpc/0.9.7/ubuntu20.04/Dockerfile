@@ -7,8 +7,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 WORKDIR /home/sammyne
 
-RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list &&\
-  sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+#RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list &&\
+#  sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 
 RUN apt update  && apt install -y                 \
   git g++ make libssl-dev libgflags-dev cmake     \
