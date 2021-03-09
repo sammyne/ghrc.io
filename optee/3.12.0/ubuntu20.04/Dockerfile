@@ -16,6 +16,7 @@ RUN dpkg --add-architecture i386                                            &&\
   libpixman-1-dev libssl-dev libtool make                                     \
   mtools netcat python-crypto python3-crypto python-pyelftools                \
   python3-pycryptodome python3-pyelftools python3-serial                      \
-  rsync unzip uuid-dev xdg-utils xterm xz-utils zlib1g-dev                  &&\
+  rsync unzip uuid-dev xdg-utils xterm xz-utils zlib1g-dev                    \
+  wget cpio                                                                 &&\
   apt install -y git cmake                                                  &&\
   ln -sf /usr/bin/python3 /usr/bin/python
