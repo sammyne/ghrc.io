@@ -2,12 +2,14 @@ FROM busybox:1.33.0 as getter
 
 WORKDIR /root/sammyne
 
-ENV REPO=https://developer.arm.com/-/media/Files/downloads/gnu-a \
+#ENV REPO=https://developer.arm.com/-/media/Files/downloads/gnu-a \
+ENV REPO=https://github.com/sammyne/gcc-arm/releases/download/    \
   TAG=9.2-2019.12
 
 ENV archive=gcc-arm-$TAG-x86_64-arm-none-linux-gnueabihf
 
-RUN wget $REPO/$TAG/binrel/$archive.tar.xz
+#RUN wget $REPO/$TAG/binrel/$archive.tar.xz
+RUN wget $REPO/$TAG/$archive.tar.xz
 RUN tar xf $archive.tar.xz
 #ADD $archive.tar.xz .
 
