@@ -2,8 +2,8 @@ FROM ubuntu:20.04 AS builder
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-#RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list &&\
-#  sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list &&\
+  sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 
 RUN apt update && apt install -y openssl git build-essential
 
@@ -16,6 +16,13 @@ RUN cd tools/PCKCertSelection           &&\
   make -C PCKCertSelectionLib           &&\
   mkdir /output                         &&\
   cp out/libPCKCertSelection.so /output
+
+WORKDIR /output
+
+RUN cp /lib/x86_64-linux-gnu/libdl*   \
+  /lib/x86_64-linux-gnu/libstdc++*    \
+  /lib/x86_64-linux-gnu/libgcc_s.so.1 \
+  .
 
 FROM busybox:1.33.1-glibc
 
