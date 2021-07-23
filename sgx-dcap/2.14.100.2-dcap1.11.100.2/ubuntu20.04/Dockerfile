@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
-RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list &&\
-  sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+#RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list &&\
+#  sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 
 # @ref Intel® SGX Software Installation Guide For Linux* OS - 06/09/2021
 # the matching driver version is v1.41
