@@ -1,4 +1,4 @@
-FROM sammyne/sgx-dcap:2.14.100.2-dcap1.11.100.2-sim-ubuntu18.04
+FROM sammyne/sgx-dcap:2.14.100.2-dcap1.11.100.2-sim-ubuntu20.04
 
 RUN export GO_VERSION=1.16.7                                          &&\
   cd /root                                                            &&\
