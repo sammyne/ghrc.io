@@ -18,13 +18,13 @@ RUN apt install -y build-essential                                        \
 
 WORKDIR /root/SGXDataCenterAttestationPrimitives
 
-RUN git clone -v https://hub.fastgit.org/intel/SGXDataCenterAttestationPrimitives . &&\
+RUN git clone -v https://github.com/intel/SGXDataCenterAttestationPrimitives . &&\
   git checkout DCAP_1.11
 
 WORKDIR /root/gramine
 
 # the ninja command can be replaced since meson>=0.55.0
-RUN git clone -v https://hub.fastgit.org/gramineproject/gramine .                             &&\
+RUN git clone -v https://github.com/gramineproject/gramine .                                  &&\
   git checkout v1.0                                                                           &&\
   sed -i 's/ftp.gnu.org/mirrors.tuna.tsinghua.edu.cn/g' subprojects/glibc-2.34.wrap           &&\
   meson setup build/ --buildtype=release -Ddirect=enabled -Dsgx=enabled -Dsgx_driver=dcap1.10 \
