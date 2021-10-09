@@ -24,9 +24,9 @@ RUN git clone -v https://github.com/intel/SGXDataCenterAttestationPrimitives . &
 WORKDIR /root/gramine
 
 # the ninja command can be replaced since meson>=0.55.0
+#  sed -i 's/ftp.gnu.org/mirrors.tuna.tsinghua.edu.cn/g' subprojects/glibc-2.34.wrap           &&\
 RUN git clone -v https://github.com/gramineproject/gramine .                                  &&\
   git checkout v1.0                                                                           &&\
-  sed -i 's/ftp.gnu.org/mirrors.tuna.tsinghua.edu.cn/g' subprojects/glibc-2.34.wrap           &&\
   meson setup build/ --buildtype=release -Ddirect=enabled -Dsgx=enabled -Dsgx_driver=dcap1.10 \
     -Dsgx_driver_include_path="/root/SGXDataCenterAttestationPrimitives/driver/linux/include" &&\
   meson compile -C build                                                                      &&\
