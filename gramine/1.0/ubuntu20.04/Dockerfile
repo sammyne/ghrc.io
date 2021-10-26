@@ -28,6 +28,7 @@ WORKDIR /root/gramine
 RUN git clone -v https://github.com/gramineproject/gramine .                                  &&\
   git checkout v1.0                                                                           &&\
   meson setup build/ --buildtype=release -Ddirect=enabled -Dsgx=enabled -Dsgx_driver=dcap1.10 \
+    -Ddcap=enabled                                                                            \
     -Dsgx_driver_include_path="/root/SGXDataCenterAttestationPrimitives/driver/linux/include" &&\
   meson compile -C build                                                                      &&\
   meson install -C build                                                                      &&\
