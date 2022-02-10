@@ -1,9 +1,9 @@
 # @ref: https://gramine.readthedocs.io/en/v1.1/quickstart.html#quick-start-with-sgx-support
 FROM sammyne/sgx-dcap:2.14.100.2-dcap1.11.100.2-ubuntu20.04 AS base
 
-ENV repo=mirrors.tuna.tsinghua.edu.cn
-RUN sed -i "s/archive.ubuntu.com/$repo/g" /etc/apt/sources.list &&\
-  sed -i "s/security.ubuntu.com/$repo/g" /etc/apt/sources.list
+#ENV repo=mirrors.tuna.tsinghua.edu.cn
+#RUN sed -i "s/archive.ubuntu.com/$repo/g" /etc/apt/sources.list &&\
+#  sed -i "s/security.ubuntu.com/$repo/g" /etc/apt/sources.list
 
 RUN apt update && apt install -y libprotobuf-c-dev
 
