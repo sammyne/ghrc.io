@@ -15,4 +15,5 @@ RUN apt update                                                    &&\
   echo "# openjdk" >> ~/.bashrc                           &&\
   echo 'export JAVA_HOME=/usr/local/jdk-11' >> ~/.bashrc  &&\
   echo 'export PATH=$PATH:$JAVA_HOME/bin' >> ~/.bashrc    &&\
+  . ~/.bashrc                                             &&\
   cs setup --apps scala:3.1.1,scalac:3.1.1,sbt,sbtn,ammonite,scalafmt
