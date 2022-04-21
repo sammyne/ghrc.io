@@ -1,6 +1,14 @@
 # ghcr.io
 Registry storing Dockerfiles
 
+## Layout
+
+Every Dockerfile is put in folder in form of
+
+```
+'software-name'/'software-version'/('bundled-software-name'-'bundled-software-version').*'os'
+```
+
 ## References
 - [build-push-action]
 
