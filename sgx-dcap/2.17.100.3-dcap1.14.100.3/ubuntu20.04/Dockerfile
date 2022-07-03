@@ -54,5 +54,7 @@ RUN UBUNTU_CODENAME=$(cat /etc/os-release | grep UBUNTU_CODENAME | awk -F"=" '{p
   libsgx-uae-service=$sdkTag          &&\
   # aesm service need this dir to create socket
   mkdir /var/run/aesmd                                                &&\
+  cd /usr/lib/x86_64-linux-gnu/                                       &&\
+  ln -s libsgx_dcap_quoteverify.so.1 libsgx_dcap_quoteverify.so       &&\
   apt clean                                                           &&\
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*   
