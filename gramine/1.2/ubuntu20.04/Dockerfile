@@ -10,11 +10,11 @@ RUN apt update && apt install -y libprotobuf-c-dev
 FROM base AS builder
 
 # meson>=0.60 has breaking changes on shared_library
-# nasm is added in v1.2
+# nasm, python3-cryptography are added in v1.2
 RUN apt install -y build-essential                                        \
-    autoconf bison gawk nasm libcurl4-openssl-dev libprotobuf-c-dev       \
-    ninja-build protobuf-c-compiler python3 python3-click python3-jinja2  \
-    python3-pip python3-protobuf wget                                   &&\
+    autoconf bison gawk nasm libcurl4-openssl-dev ninja-build             \
+    protobuf-c-compiler python3 python3-click python3-cryptography        \
+    python3-jinja2 python3-pip python3-protobuf wget                    &&\
     python3 -m pip install 'meson==0.59.3' 'toml>=0.10'                 &&\
     apt install -y git pkg-config
 
