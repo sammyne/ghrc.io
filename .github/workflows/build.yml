@@ -5,6 +5,9 @@ on:
   #  branches-ignore: ["main"]
   pull_request:
     branches: ["main"]
+    # ref: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#patterns-to-match-file-paths
+    paths-ignore:
+    - '**/README.md'
 
 jobs:
   build:
