@@ -22,6 +22,9 @@ RUN apt-get update &&\
 
 COPY --from=repo /output/idea /idea
 
+# ref: https://youtrack.jetbrains.com/issue/GTW-936/20213-Headless-server-Need-a-way-to-bypass-Press-ENTER-to-continue
+ENV CWM_TRUST_PROJECTS=1
+
 WORKDIR /workspace
 
 # searching plugin id (such as 'org.intellij.scala') refers to
