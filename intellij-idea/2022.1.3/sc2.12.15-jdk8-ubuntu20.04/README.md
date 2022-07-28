@@ -6,9 +6,9 @@
     ```bash
     docker build -t intellij-idea:2022.1.3-alpha .
     ```
-1. Run the docker image in remote host
+1. Run the docker image in remote host (`{your-project-dir}` should be replaced based on your case)
     ```bash
-    docker run -it --rm -p 5993:5993 --name idea intellij-idea:2022.1.3-alpha
+    docker run -it --rm -p 5993:5993 -v {your-project-dir}:/workspace --name idea intellij-idea:2022.1.3-alpha
     ```
     Once ready, we should see a sample log snippet as
     ```bash
