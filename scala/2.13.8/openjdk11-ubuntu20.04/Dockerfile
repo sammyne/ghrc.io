@@ -14,4 +14,4 @@ ENV PATH=$PATH:/root/.local/share/coursier/bin
 
 COPY --from=repo /output/cs /usr/bin/
 
-RUN cs setup --apps scala:2.12.15,scalac:2.12.15,sbt:1.7.1,sbtn:1.7.1,ammonite:2.5.4,scalafmt:3.5.8
+RUN cs setup --apps scala:2.13.8,scalac:2.13.8,sbt:1.7.1,sbtn:1.7.1,ammonite:2.5.4,scalafmt:3.5.8
