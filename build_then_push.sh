@@ -66,10 +66,15 @@ findDependents() {
 }
 ## -- functions END --
 
+# sees https://docs.github.com/en/actions/learn-github-actions/environment-variables#default-environment-variables
+echo "GITHUB_SHA = $GITHUB_SHA"
+echo "GITHUB_BASE_REF = $GITHUB_BASE_REF"
+
 # filter out files in folder like 'libfaketime/0.9.8/alpine3.12/'
 # @dev '/' needs no escaping
-#git diff HEAD~ HEAD --name-status | grep -E '^[^/]+/[^/]+/[^/]+/[^/]+'
-packages=$(git diff HEAD~ HEAD --name-only | \
+# options '--diff-filter' sees https://git-scm.com/docs/git-diff#git-diff---diff-filterACDMRTUXB82308203
+# 'origin' is required, other error 'unknown revision or path not in the working tree.'
+packages=$(git diff origin/$GITHUB_BASE_REF $GITHUB_SHA --name-only --diff-filter=d | \
   grep -E '^[^/]+/[^/]+/[^/]+/[^/]+' | \
   xargs -I {} dirname {} | \
   awk -F"/" '{print $1"/"$2"/"$3}' | \
