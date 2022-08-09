@@ -1,4 +1,4 @@
-FROM sammyne/scala:2.12.15-jdk8-ubuntu20.04
+FROM sammyne/scala:2.12.15-openjdk8-ubuntu20.04
 
 RUN RUST_VERSION=1.60.0                                               &&\
   apt update                                                          &&\

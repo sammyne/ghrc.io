@@ -1,4 +1,4 @@
-FROM sammyne/scala:2.12.15-jdk8-ubuntu20.04
+FROM sammyne/scala:2.12.15-openjdk8-ubuntu20.04
 
 #RUN sed -i 's/archive.ubuntu.com/mirrors.tencent.com/g' /etc/apt/sources.list &&\
 #  sed -i 's/security.ubuntu.com/mirrors.tencent.com/g' /etc/apt/sources.list
