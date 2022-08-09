@@ -11,13 +11,13 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
-          # depth=2 is needed by build_then_push.sh
-          fetch-depth: 2
+          # depth=0 is needed by build_then_push.sh
+          fetch-depth: 0
           persist-credentials: false
       - name: Docker toolchains
         run: docker version
