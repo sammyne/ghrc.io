@@ -17,3 +17,5 @@ RUN cmake -B build -DgRPC_INSTALL=ON  \
   cmake --build build                 &&\
   cmake --install build               &&\
   rm -rf build
+
+ENV PATH=$PATH:/grpc/bin
