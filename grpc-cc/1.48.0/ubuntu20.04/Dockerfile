@@ -9,13 +9,20 @@ RUN apt update && apt install -y git cmake build-essential autoconf libtool pkg-
 
 WORKDIR /github.com/grpc/grpc
 
-RUN git clone --recurse-submodules -b $GRPC_VERSION --depth 1 --shallow-submodules https://github.com/grpc/grpc .
-
-RUN cmake -B build -DgRPC_INSTALL=ON  \
-    -DgRPC_BUILD_TESTS=OFF            \
-    -DCMAKE_INSTALL_PREFIX=/grpc      &&\
-  cmake --build build                 &&\
-  cmake --install build               &&\
+RUN git clone --recurse-submodules  \
+    -b $GRPC_VERSION                \
+    --depth 1                       \
+    --shallow-submodules            \
+    https://github.com/grpc/grpc .  &&\
+  cmake -B build -DgRPC_INSTALL=ON  \
+    -DgRPC_BUILD_TESTS=OFF          \
+    -DCMAKE_INSTALL_PREFIX=/grpc    &&\
+  cmake --build build               &&\
+  cmake --install build             &&\
   rm -rf build
 
 ENV PATH=$PATH:/grpc/bin
+
+ADD fix-protoc-plugins.sh .
+
+RUN bash fix-protoc-plugins.sh
