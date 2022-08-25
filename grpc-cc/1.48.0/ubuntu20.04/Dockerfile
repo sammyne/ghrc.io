@@ -5,7 +5,7 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive \
   GRPC_VERSION=v1.48.0
 
-RUN apt update && apt install -y git cmake build-essential autoconf libtool pkg-config 
+RUN apt update && apt install -y git cmake build-essential autoconf libtool pkg-config libssl-dev
 
 WORKDIR /github.com/grpc/grpc
 
@@ -16,7 +16,8 @@ RUN git clone --recurse-submodules  \
     https://github.com/grpc/grpc .  &&\
   cmake -B build -DgRPC_INSTALL=ON  \
     -DgRPC_BUILD_TESTS=OFF          \
-    -DCMAKE_INSTALL_PREFIX=/grpc    &&\
+    -DCMAKE_INSTALL_PREFIX=/grpc    \
+    -DgRPC_SSL_PROVIDER=package     &&\
   cmake --build build               &&\
   cmake --install build             &&\
   rm -rf build
