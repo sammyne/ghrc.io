@@ -1,5 +1,5 @@
 # ref: https://github.com/openenclave/openenclave/blob/master/docs/GettingStartedDocs/install_oe_sdk-Ubuntu_20.04.md
-FROM sammyne/sgx-dcap:2.17.100.3-dcap1.14.100.3-ubuntu20.04
+FROM sammyne/sgx-dcap:2.17.100.3-dcap1.14.100.3-dev-ubuntu20.04
 
 ENV OE_VERSION=0.18.2
 #RUN echo "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-10 main" | sudo tee /etc/apt/sources.list.d/llvm-toolchain-focal-10.list &&\
