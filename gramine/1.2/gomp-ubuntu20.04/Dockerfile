@@ -16,7 +16,8 @@ RUN apt install -y build-essential                                        \
     protobuf-c-compiler python3 python3-click python3-cryptography        \
     python3-jinja2 python3-pip python3-protobuf wget                    &&\
     python3 -m pip install 'meson==0.59.3' 'toml>=0.10'                 &&\
-    apt install -y git pkg-config
+    apt install -y git pkg-config                                       &&\
+    apt install -y libgmp-dev libmpfr-dev libmpc-dev libisl-dev
 
 WORKDIR /root/SGXDataCenterAttestationPrimitives
 
