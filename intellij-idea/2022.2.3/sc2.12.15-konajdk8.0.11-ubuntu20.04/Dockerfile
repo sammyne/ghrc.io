@@ -35,4 +35,7 @@ ADD gitignore /workspace/.gitignore
 
 EXPOSE 5993
 
+# overwrite the installed openjdk
+RUN ln -sf $JAVA_HOME/bin/java /usr/bin/java
+
 ENTRYPOINT ["/idea/bin/remote-dev-server.sh", "run", "/workspace", "--listenOn", "0.0.0.0", "--port", "5993"]
