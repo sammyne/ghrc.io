@@ -6,7 +6,7 @@ Registry storing Dockerfiles
 Every Dockerfile is put in folder in form of
 
 ```
-'software-name'/'software-version'/('bundled-software-name'-'bundled-software-version').*'os'
+'software-name'/'software-version'/('bundled-software-name''bundled-software-version').*'os'
 ```
 
 ## References
