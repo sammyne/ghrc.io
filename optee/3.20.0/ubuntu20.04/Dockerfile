@@ -63,11 +63,11 @@ RUN apt update &&\
 
 # WHY slirp-dev sees
 #  - https://wiki.qemu.org/ChangeLog/7.2#Removal_of_the_%22slirp%22_submodule_(affects_%22-netdev_user%22)
-RUN apt install -y wget cpio git cmake vim  &&\
-  apt install -y libslirp-dev               &&\
-  ln -sf /usr/bin/python3 /usr/bin/python
-
-RUN apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt install -y wget cpio git cmake vim      &&\
+  apt install -y libslirp-dev                   &&\
+  ln -sf /usr/bin/python3 /usr/bin/python       &&\
+  apt clean                                     &&\
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY --from=repo /output/repo /bin/repo
 
@@ -75,15 +75,16 @@ ENV USE_CCACHE=1              \
   CCACHE_DIR=/optee/.ccache   \
   CCACHE_UMASK=002
 
-RUN useradd --shell /bin/bash -u 1000 -o -c "" -m optee && echo 'optee:optee' | chpasswd
-
-RUN mkdir /optee && chown -R optee:optee /optee
+RUN useradd --shell /bin/bash -u 1000 -o -c "" -m optee &&\
+  echo 'optee:optee' | chpasswd                         &&\
+  mkdir /optee                                          &&\
+  chown -R optee:optee /optee
 
 USER optee
 
 # Configure git so repo won't complain later on
-RUN git config --global user.name "optee"
-RUN git config --global user.email "optee@github.com"
+RUN git config --global user.name "optee"           &&\
+  git config --global user.email "optee@github.com"
 
 WORKDIR /optee
 
@@ -93,5 +94,6 @@ WORKDIR /optee/build
 
 # hotfix: enable slirp explicitly for QEMU>=7.2
 # ref: https://wiki.qemu.org/ChangeLog/7.2#Removal_of_the_%22slirp%22_submodule_(affects_%22-netdev_user%22)
-RUN sed -i "471i QEMU_CONFIGURE_PARAMS_COMMON += --enable-slirp" common.mk &&\
-  make -j4 toolchains
+RUN sed -i "471i QEMU_CONFIGURE_PARAMS_COMMON += --enable-slirp" common.mk  &&\
+  make -j4 toolchains                                                       &&\ 
+  make -j4
