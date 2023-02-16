@@ -63,7 +63,7 @@ RUN apt update &&\
 
 # WHY slirp-dev sees
 #  - https://wiki.qemu.org/ChangeLog/7.2#Removal_of_the_%22slirp%22_submodule_(affects_%22-netdev_user%22)
-RUN apt install -y wget cpio git cmake vim      &&\
+RUN apt install -y wget cpio git cmake vim sudo &&\
   apt install -y libslirp-dev                   &&\
   ln -sf /usr/bin/python3 /usr/bin/python       &&\
   apt clean                                     &&\
@@ -72,25 +72,25 @@ RUN apt install -y wget cpio git cmake vim      &&\
 COPY --from=repo /output/repo /bin/repo
 
 ENV USE_CCACHE=1              \
-  CCACHE_DIR=/optee/.ccache   \
+  CCACHE_DIR=/home/optee/.ccache   \
   CCACHE_UMASK=002
 
 RUN useradd --shell /bin/bash -u 1000 -o -c "" -m optee &&\
   echo 'optee:optee' | chpasswd                         &&\
-  mkdir /optee                                          &&\
-  chown -R optee:optee /optee
+  adduser optee sudo
 
+# root isn't ok for OP-TEE within container for unknown reasons
 USER optee
 
 # Configure git so repo won't complain later on
 RUN git config --global user.name "optee"           &&\
   git config --global user.email "optee@github.com"
 
-WORKDIR /optee
+WORKDIR /home/optee
 
 RUN repo init -b 3.20.0 -u https://github.com/OP-TEE/manifest.git -m qemu_v8.xml && repo sync -j4 -v
 
-WORKDIR /optee/build
+WORKDIR /home/optee/build
 
 # hotfix: enable slirp explicitly for QEMU>=7.2
 # ref: https://wiki.qemu.org/ChangeLog/7.2#Removal_of_the_%22slirp%22_submodule_(affects_%22-netdev_user%22)
