@@ -90,3 +90,29 @@ Finally, standard output goes as
 Invoking TA to increment 42
 TA incremented value to 43
 ```
+
+## Head Ups
+- Using `root` user isn't ok, which will produce errors as
+	```bash
+	ln -sf /optee/build/../out-br/images/rootfs.cpio.gz /optee/build/../out/bin/
+
+	* QEMU is now waiting to start the execution
+	* Start execution with either a 'c' followed by <enter> in the QEMU console or
+	* attach a debugger and continue from there.
+	*
+	* To run OP-TEE tests, use the xtest command in the 'Normal World' terminal
+	* Enter 'xtest -h' for help.
+
+	No protocol specified
+	No protocol specified
+	Warning: This program is an suid-root program or is being run by the root user.
+	The full text of the error or warning message cannot be safely formatted
+	in this environment. You may get a more descriptive message by running the
+	program as a non-root user or by removing the suid bit on the executable.
+	/usr/bin/xterm: Xt error: Can't open display: %s
+	Warning: This program is an suid-root program or is being run by the root user.
+	The full text of the error or warning message cannot be safely formatted
+	in this environment. You may get a more descriptive message by running the
+	program as a non-root user or by removing the suid bit on the executable.
+	/usr/bin/xterm: Xt error: Can't open display: %s
+	```
