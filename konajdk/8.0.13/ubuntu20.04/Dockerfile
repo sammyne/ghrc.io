@@ -2,7 +2,7 @@ FROM busybox:1.35.0 AS repo
 
 WORKDIR /output
 
-RUN wget -O - https://github.com/Tencent/TencentKona-8/releases/download/8.0.13-GA/TencentKona8.0.13.b1_jre_linux-x86_64_8u362.tar.gz | \
+RUN wget -O - https://github.com/Tencent/TencentKona-8/releases/download/8.0.13-GA/TencentKona8.0.13.b1_jdk_linux-x86_64_8u362.tar.gz | \
   tar -zxv &&\
   mv TencentKona-* TencentKona
 
