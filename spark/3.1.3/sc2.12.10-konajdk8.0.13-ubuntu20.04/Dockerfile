@@ -2,18 +2,18 @@ FROM busybox:1.35.0 AS repo
 
 WORKDIR /output
 
-ENV VERSION=3.9.0
+ENV VERSION=3.9.1
 
 RUN wget -O - https://dlcdn.apache.org/maven/maven-3/$VERSION/binaries/apache-maven-$VERSION-bin.tar.gz | \
   tar -zxv                                                                                              &&\
   mv apache-maven-* maven
 
 
-FROM sammyne/scala:2.12.10-konajdk8.0.12-ubuntu20.04 AS builder
+FROM sammyne/scala:2.12.10-konajdk8.0.13-ubuntu20.04 AS builder
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt update && apt install -y git curl
+RUN apt update && apt install -y git curl && apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV PATH=/opt/maven/bin:$PATH
 
